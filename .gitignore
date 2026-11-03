@@ -1,0 +1,15 @@
+# Python virtual environments & bytecode
+venv/
+.venv/
+__pycache__/
+*.py[cod]
+
+# Testing artifacts
+.pytest_cache/
+
+# Environment / API keys
+.env
+
+# OS metadata
+.DS_Store
+Thumbs.db
