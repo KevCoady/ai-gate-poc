@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "blockReadsOutsideWorkingDirectories": true,
+    "blockWritesOutsideWorkingDirectories": true,
+    "deny": [
+      "Read(/Users/kevin/.ssh/**)",
+      "Read(/Users/kevin/.aws/**)",
+      "Read(/Users/kevin/.config/**)",
+      "Read(/Users/kevin/.gnupg/**)",
+      "Read(/Users/kevin/Documents/**)",
+      "Read(/Users/kevin/Desktop/**)",
+      "Read(/Users/kevin/.*history*)"
+    ]
+  }
+}
