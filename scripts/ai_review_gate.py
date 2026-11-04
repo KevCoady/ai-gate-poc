@@ -14,7 +14,19 @@ client = OpenAI(api_key=api_key)
 def get_git_diff():
     # Ignore virtualenvs, lockfiles, and bytecode caches
     ignore = [":(exclude)*venv*", ":(exclude)*lock*", ":(exclude)__pycache__*"]
-    cmd = ["git", "diff", "origin/main...HEAD", "--"] + ignore
+
+    # Determine base branch: use origin/main if available, otherwise local main
+    base_ref = "origin/main"
+    has_remote = subprocess.run(
+        ["git", "rev-parse", "--verify", "origin/main"],
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL,
+    ).returncode == 0
+
+    if not has_remote:
+        base_ref = "main"
+
+    cmd = ["git", "diff", f"{base_ref}...HEAD", "--"] + ignore
     try:
         return subprocess.check_output(cmd, text=True)
     except subprocess.CalledProcessError as e:
